@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">recuperatorio</string>
+    <string name="text1">Ingrese los datos del recordatorio:</string>
+    <string name="input1">Ingrese el nombre del recordatorio</string>
+    <string name="input2">Ingrese la fecha del recordatorio</string>
+    <string name="sel1">Seleccione la importancia del recordatorio:</string>
+    <string name="op1">Normal</string>
+    <string name="op2">Importante</string>
+    <string name="op3">Muy Importante</string>
+    <string name="btn1">Guardar Recordatorio</string>
+    <string name="btn2">Ver Recordatorios</string>
+    <string name="text2">Recordatorios</string>
+</resources>
