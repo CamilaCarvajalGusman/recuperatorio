@@ -15,12 +15,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.recuperatorio.ui.theme.RecuperatorioTheme
 import kotlinx.coroutines.delay
-
 @Composable
-fun splashScreen( onSuccess : () -> Unit ) {
-    val azul = Color(red = 12, green = 144, blue = 217)
+fun splashScreen(onSuccess: () -> Unit) {
+    val rosaSuave = Color(0xFFFFE4E1) // Color rosa suave
 
-    LaunchedEffect (Unit) {
+    LaunchedEffect(Unit) {
         delay(5000)
         onSuccess()
     }
@@ -28,20 +27,9 @@ fun splashScreen( onSuccess : () -> Unit ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = azul),
+            .background(color = rosaSuave),
         contentAlignment = Alignment.Center
     ) {
-        Image(
-            modifier = Modifier
-                .size(200.dp),
-            painter = painterResource(id = R.drawable.calendario),
-            contentDescription = "Logo"
-        )
+
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun SplashPreview() {
-//    splashScreen()
-//}

@@ -1,5 +1,6 @@
 package com.example.recuperatorio.listaRecordatorios
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,11 +27,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import com.example.recuperatorio.R
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun listaScreen(viewModel: ListaRecViewModel = hiltViewModel(), onBackPressed: () -> Unit) {
@@ -39,13 +40,15 @@ fun listaScreen(viewModel: ListaRecViewModel = hiltViewModel(), onBackPressed: (
     }
 
     val recordatorios by viewModel.listaflow.collectAsState()
-//    var n = 0
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.text2))
+                    Text(
+                        text = stringResource(id = R.string.text2),
+                        fontSize = 24.sp // Aumenté el tamaño del título
+                    )
                 },
                 navigationIcon = {
                     IconButton(
@@ -57,67 +60,45 @@ fun listaScreen(viewModel: ListaRecViewModel = hiltViewModel(), onBackPressed: (
                             )
                         }
                     )
-
                 }
             )
         },
-        content = {
-                paddingValues ->  Column(
-            modifier = Modifier.padding(paddingValues).padding(top = 40.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                LazyColumn {
-                    items(recordatorios) { rec ->
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 4.dp),
-                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-                        ) {
-                            Column(modifier = Modifier.padding(12.dp)) {
-//                                Text("Recordatorio: "+(n+1).toString(), fontSize = 18.sp)
-                                Text("Nombre: ${rec.nombre}", fontSize = 18.sp)
-                                Text("Fecha: ${rec.fecha}")
-                                Text("Importancia: ${rec.importancia}")
+        content = { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .padding(top = 40.dp)
+                    .background(Color(0xFFFFE4E1)),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    LazyColumn {
+                        items(recordatorios) { rec ->
+                            Card(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 4.dp),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                            ) {
+                                Column(modifier = Modifier.padding(12.dp)) {
+                                    Text(
+                                        text = "Nombre: ${rec.nombre}",
+                                        fontSize = 22.sp
+                                    )
+                                    Text(
+                                        text = "Fecha: ${rec.fecha}",
+                                        fontSize = 20.sp
+                                    )
+                                    Text(
+                                        text = "Importancia: ${rec.importancia}",
+                                        fontSize = 20.sp
+                                    )
+                                }
                             }
                         }
-//                        n += 1
                     }
                 }
             }
         }
-        }
     )
-
-//    Column(modifier = Modifier.padding(16.dp)) {
-//        Text(
-//            text = "Lista de Recordatorios",
-//            modifier = Modifier.padding(bottom = 8.dp)
-//        )
-//        LazyColumn {
-//            items(recordatorios) { rec ->
-//                Card(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(vertical = 4.dp),
-//                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-//                ) {
-//                    Column(modifier = Modifier.padding(12.dp)) {
-//                        Text("Recordatorio: "+(n+1).toString(), fontSize = 18.sp)
-//                        Text("Nombre: ${rec.nombre}", fontSize = 18.sp)
-//                        Text("Fecha: ${rec.fecha}")
-//                        Text("Importancia: ${rec.importancia}")
-//                    }
-//                }
-//                n += 1
-//            }
-//        }
-//    }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun ListaPreview() {
-//    listaScreen()
-//}
